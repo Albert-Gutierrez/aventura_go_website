@@ -201,7 +201,6 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                         <button class="btn btn-primary-wizard" id="nextBtn">
                             Siguiente <i class="fas fa-arrow-right"></i>
                         </button>
-
                     </div>
                 </div>
             </form>
