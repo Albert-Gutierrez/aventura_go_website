@@ -121,8 +121,8 @@ form[action="busqueda"] input {
 
 form[action="busqueda"] .bi-search {
     position: absolute;
-    bottom: 29px;
-    left: 15px;
+    bottom: 48px;
+    left: 600px;
     font-size: 18px;
     pointer-events: none;
     color: #95a5a6;

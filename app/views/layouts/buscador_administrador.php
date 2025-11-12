@@ -2,7 +2,7 @@
                 <input type="text">
                 <i class="bi bi-search"></i>
 
-                <button id="modoOscuroBtn"> <i class="bi bi-moon-fill"></i></button> -->
+                <button id="modoOscuroBtn"> <i class="bi bi-moon-fill"></i></button>
                 <button id="notificacionesBtn"> <i class="bi bi-bell-fill"></i></button>
 
                 <!-- Dropdown con Bootstrap -->
