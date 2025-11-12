@@ -16,7 +16,7 @@ $request = strtok($request, '?');
 $request = rtrim($request, '/');
 
 //si la ruta queda vacia, se interpreta como "/"
-if ($request === '') $request = '/'; 
+if ($request === '') $request = '/';
 
 //enrutamiento basico
 switch ($request) {
@@ -24,31 +24,34 @@ switch ($request) {
         require BASE_PATH . '/app/views/website/index.html'; //redirige a la pagina de inicio
         break;
 
-//inicio rutas login
+
+    //inicio rutas login
     case '/login':
         require BASE_PATH . '/app/views/auth/login.php'; //redirige a el login 
-        break;    
+        break;
     case '/iniciar-sesion':
         require BASE_PATH . '/app/controllers/loginController.php'; //redirige al inicio de sesion
         break;
-//fin rutas login
+    //fin rutas login
 
-//........................inicio rutas administrador
-        case '/administrador/dashboard':
+
+    //........................inicio rutas administrador
+    case '/administrador/dashboard':
         require BASE_PATH . '/app/views/dashboard/administrador/administrador.php';  //redirige al panel de administrador
         break;
 
-        case '/administrador/registrar-proveedor':
+    case '/administrador/registrar-proveedor':
         require BASE_PATH . '/app/views/dashboard/administrador/registrar_proveedor.php';  //redirige al perfil de usuario de administrador
         break;
 
+    case '/administrador/guardar-proveedor':
+        require BASE_PATH . '/app/controllers/proveedor.php';  //redirige al guardar proveedor
+        break;
 
     //fin rutas administrador
 
 
     default:
-    require BASE_PATH . '/app/views/auth/error404.html';
-    break;
-
+        require BASE_PATH . '/app/views/auth/error404.html';
+        break;
 }
-?>

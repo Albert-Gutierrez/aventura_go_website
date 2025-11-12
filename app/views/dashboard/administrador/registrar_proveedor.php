@@ -20,7 +20,7 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
             ?>
 
             <!-- Formulario Wizard -->
-            <form id="formProveedor" action="/aventura_go/app/controllers/registrarProveedor.php" method="POST">
+            <form id="formProveedor" action="<?= BASE_URL ?>/administrador/guardar-proveedor" method="POST" enctype="multipart/form-data">
 
 
                 <div class="wizard-container">
@@ -72,10 +72,6 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <label class="form-label">Teléfono *</label>
                                     <input type="tel" name="telefono" class="form-control" id="telefono" placeholder="+57 300 123 4567" required>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Años de Experiencia *</label>
-                                    <input type="number" name="anos_experiencia" class="form-control" id="experiencia" placeholder="5" required>
-                                </div>
                             </div>
                         </div>
 
@@ -124,12 +120,12 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-3">
+                                <!-- <div class="col-md-12 mb-3">
                                     <label class="form-label">Capacidad Máxima *</label>
                                     <input type="number" name="capacidad" class="form-control" id="capacidad" placeholder="20" required>
-                                </div>
+                                </div> -->
                                 <div class="col-md-12 mb-3">
-                                    <label class="form-label">Descripción *</label>
+                                    <label class="form-label">Descripción actividades*</label>
                                     <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Describe los servicios que ofreces..." required></textarea>
                                 </div>
                             </div>
@@ -137,45 +133,11 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
 
                         <!-- Paso 3 -->
                         <div class="step-content" data-step="3">
-                            <h4 class="mb-4"><i class="fas fa-map-marker-alt text-primary"></i> Ubicación y Cobertura</h4>
+                            <h4 class="mb-4"><i class="fas fa-map-marker-alt text-primary"></i> Ubicación</h4>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Departamento *</label>
-                                    <select class="form-select" id="departamento" name="departamento" required>
-                                        <option selected>Selecciona...</option>
-                                        <option>Amazonas</option>
-                                        <option>Antioquia</option>
-                                        <option>Arauca</option>
-                                        <option>Atlántico</option>
-                                        <option>Bolívar</option>
-                                        <option>Boyacá</option>
-                                        <option>Caldas</option>
-                                        <option>Caquetá</option>
-                                        <option>Casanare</option>
-                                        <option>Cauca</option>
-                                        <option>Cesar</option>
-                                        <option>Chocó</option>
-                                        <option>Córdoba</option>
-                                        <option>Cundinamarca</option>
-                                        <option>Guainía</option>
-                                        <option>Guaviare</option>
-                                        <option>Huila</option>
-                                        <option>La Guajira</option>
-                                        <option>Magdalena</option>
-                                        <option>Meta</option>
-                                        <option>Nariño</option>
-                                        <option>Norte de Santander</option>
-                                        <option>Putumayo</option>
-                                        <option>Quindío</option>
-                                        <option>Risaralda</option>
-                                        <option>San Andrés y Providencia</option>
-                                        <option>Santander</option>
-                                        <option>Sucre</option>
-                                        <option>Tolima</option>
-                                        <option>Valle del Cauca</option>
-                                        <option>Vaupés</option>
-                                        <option>Vichada</option>
-                                    </select>
+                                    <label class="form-label">departamento *</label>
+                                    <input type="text" name="departamento" class="form-control" id="departamento" placeholder="Juan Pérez" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Ciudad *</label>
@@ -185,10 +147,10 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <label class="form-label">Dirección *</label>
                                     <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Calle 123 #45-67" required>
                                 </div>
-                                <div class="col-md-12 mb-3">
+                                <!-- <div class="col-md-12 mb-3">
                                     <label class="form-label">Cobertura *</label>
                                     <textarea class="form-control" id="cobertura" name="cobertura" rows="3" placeholder="Describe las zonas donde ofreces tus servicios..." required></textarea>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
@@ -218,13 +180,15 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                         <div class="preview-label">Email</div>
                                         <div class="preview-value" id="prev-email">-</div>
                                     </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="preview-label">Telefono</div>
+                                        <div class="preview-value" id="prev-telefono">-</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="preview-card">
                                 <h6 class="text-primary mb-3"><i class="fas fa-hiking"></i> Servicios</h6>
                                 <div id="prev-actividades">-</div>
-                                <div class="preview-label mt-2">Capacidad</div>
-                                <div class="preview-value" id="prev-capacidad">-</div>
                             </div>
                             <div class="preview-card">
                                 <h6 class="text-primary mb-3"><i class="fas fa-map-marker-alt"></i> Ubicación</h6>
@@ -234,18 +198,6 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                 <h6 class="text-primary mb-3"><i class="fas fa-info-circle"></i> Descripción</h6>
                                 <div class="preview-value" id="prev-descripcion">-</div>
                             </div>
-
-                            <div class="preview-card">
-                                <h6 class="text-primary mb-3"><i class="fas fa-map"></i> Cobertura</h6>
-                                <div class="preview-value" id="prev-cobertura">-</div>
-                            </div>
-
-
-                            <button type="button" id="confirmarDatosBtn" class="btn btn-success w-100 mb-3 mt-3">
-                                Confirmar datos <i class="fas fa-check"></i>
-                            </button>
-
-
                         </div>
 
                     </div>

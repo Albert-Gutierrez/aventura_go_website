@@ -16,7 +16,7 @@
                     <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/destino 2.png" alt="destinos">
                     <p>Destinos</p>
                 </a>
-                <a href="">
+                <a href="<?= BASE_URL ?>/administrador/dashboard">
                     <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/Dashboard.png"
                         alt="dashboard">
                     <p>Dashboard</p>
