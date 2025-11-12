@@ -66,10 +66,9 @@ function loadPreview() {
     document.getElementById("prev-telefono").textContent = telefono.value;
 
     let actividades = [];
-    document.querySelectorAll('input[name="actividades[]"]:checked')
-        .forEach(el => actividades.push(el.value));
-
+    document.querySelectorAll('input[name="actividades[]"]:checked') .forEach(el => actividades.push(el.value));
     document.getElementById("prev-actividades").textContent = actividades.join(", ") || "-";
+
     document.getElementById("prev-ubicacion").textContent = `${ciudad.value}, ${departamento.value}`;
     document.getElementById("prev-descripcion").textContent = descripcion.value || "-";
 }
