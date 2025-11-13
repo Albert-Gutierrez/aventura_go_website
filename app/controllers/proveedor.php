@@ -88,7 +88,18 @@ function registrarProveedor()
 
 
 
-function listarProveedores() {}
+function listarProveedores() {
+
+    // session_start();
+
+    $resultado = new proveedor();
+    $proveedores = $resultado->consultar();
+
+    return $proveedores;
+
+}
+
+
 
 function actualizarProveedor() {}
 

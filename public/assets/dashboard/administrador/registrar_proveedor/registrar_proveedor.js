@@ -1,3 +1,4 @@
+
 let currentStep = 1;
 
 // Mostrar paso

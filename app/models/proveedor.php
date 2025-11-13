@@ -14,9 +14,8 @@ class Proveedor
         $this->conexion = $db->getConexion(); // Obtiene la conexión PDO y la guarda en $this->conexion
     }
 
-    // Función para autenticar usuario (recibe el correo y la clave escrita por el usuario)
-    public function registrar($data)
-    {
+    // Función para autenticar usuario (recibe el correo y la clave escrita por el usuario)________________________________________
+    public function registrar($data){
 
         try {
             $insertar = "INSERT INTO proveedor(
@@ -65,4 +64,33 @@ class Proveedor
             return false;
         }
     }
+
+
+
+
+   // function consultar______________________________________________________________________________________________________
+    public function consultar(){
+        //variable que almacena lka sentencia sql a ejecutar
+        try {
+            $consultar = "SELECT * FROM proveedor ORDER BY id_proveedor DESC";
+
+            // PREPARAR LO NECESARIO PARA EJECUTAR LA FUNCION
+            $resultado = $this->conexion->prepare($consultar);
+
+            $resultado->execute();
+
+            return $resultado->fetchAll();
+
+        
+            }
+        catch (PDOException $e) {
+            error_log("Error en proveedor::consultar->" . $e->getMessage());
+            return [];
+    }
+
+    }
+
 }
+        
+
+?>

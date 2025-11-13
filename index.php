@@ -48,6 +48,10 @@ switch ($request) {
         require BASE_PATH . '/app/controllers/proveedor.php';  //redirige al guardar proveedor
         break;
 
+         case '/administrador/tabla':
+        require BASE_PATH . '/app/views/dashboard/administrador/tabla.php';  //redirige a la tabla
+        break;
+
     //fin rutas administrador
 
 

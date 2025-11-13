@@ -4,8 +4,6 @@ require_once BASE_PATH . '/app/helpers/session_administrador.php';
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,5 +33,6 @@ require_once BASE_PATH . '/app/helpers/session_administrador.php';
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/dashboard/administrador/historial de reservas/historial_reservas.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/dashboard/administrador/perfil_usuario/perfil.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/dashboard/administrador/registrar_proveedor/registrar_proveedor.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/dashboard/administrador/tabla/tabla.css">
 
 </head>
