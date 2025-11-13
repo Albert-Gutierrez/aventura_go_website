@@ -33,6 +33,7 @@ switch ($method) {
 }
 
 //FUNCIONES CRUD
+// registrar proveedor__________________________________________________________________________________
 function registrarProveedor()
 {
     $nombre_empresa        = $_POST['nombre_empresa'] ?? '';
@@ -87,7 +88,7 @@ function registrarProveedor()
 
 
 
-
+// CONSULTAR PROVEEDOR________________________________________________________________________________________
 function listarProveedores() {
 
     // session_start();
@@ -100,9 +101,12 @@ function listarProveedores() {
 }
 
 
-
+// EDITAR PROVEEDOR____________________________________________________________________________________
 function actualizarProveedor() {}
 
+
+
+// ELIMINAR PROVEEDOR_______________________________________________________________________________________
 function eliminarProveedor() {}
 
 ?>

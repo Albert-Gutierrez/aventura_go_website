@@ -19,7 +19,7 @@ class Proveedor
 
         try {
             $insertar = "INSERT INTO proveedor(
-                /*se escriben como este en la base de datos*/
+            /*se escriben como este en la base de datos*/
             nombre_empresa,
             nit_rut,
             nombre_representante,
@@ -70,7 +70,7 @@ class Proveedor
 
    // function consultar______________________________________________________________________________________________________
     public function consultar(){
-        //variable que almacena lka sentencia sql a ejecutar
+        //variable que almacena la sentencia sql a ejecutar
         try {
             $consultar = "SELECT * FROM proveedor ORDER BY id_proveedor DESC";
 

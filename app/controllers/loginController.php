@@ -4,7 +4,7 @@ require_once __DIR__ . '/../helpers/alert_helper.php';
 require_once __DIR__ . '/../models/login.php';
 
 
-// $clave = '123';
+// $clave = '789';
 // echo password_hash($clave, PASSWORD_DEFAULT);
 
 //ejeciutar segun la solicitud al servisor "POST"
@@ -37,14 +37,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         'rol' => $resultado['rol']
     ];
 
-    mostrarSweetAlert('success', 'Bienvenido', 'inicio de sesion exitoso. Redirigiendo...', '/aventura_go/administrador/dashboard');
+    //REDIRECCION SEGUN EL ROL
+    $redirectUrl = '/aventura_go/login';
+    $mensaje = 'Rol inexistente. redirigiendo al inicio de sesion...';
+
+    switch ($resultado['rol']) {
+        case 'administrador':
+            $redirectUrl = '/aventura_go/administrador/dashboard';
+            $mensaje = 'Bienvenido Administrador';
+            break;
+        case 'proveedor':
+            $redirectUrl = '/aventura_go';
+            $mensaje = 'Bienvenido proveedor turistico';
+            break;
+
+        case 'proveedor_hotelero':
+            $redirectUrl = '/aventura_go';
+            $mensaje = 'Bienvenido proveedor hotelero';
+            break;
+        
+        case 'turista':
+            $redirectUrl = '/aventura_go/';
+            $mensaje = 'Bienvenido';
+            break;
+        
+    }
+    mostrarSweetAlert('success', 'ingreso exitoso', $mensaje, $redirectUrl);
     exit();
 
-} else{
+} 
+else{
     http_response_code(405);
     echo "Metodo no permitido";
     exit();
 }
+
+
+
+
+
 
 
 ?>

@@ -12,9 +12,9 @@
                     <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/tours.png" alt="tours">
                     <p>registrar Proveedor</p>
                 </a>
-                <a href="<?= BASE_URL ?>/administrador/tabla">
+                <a href="<?= BASE_URL ?>/administrador/consultar-proveedor">
                     <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/destino 2.png" alt="destinos">
-                    <p>Tabla</p>
+                    <p>Consultar Proveedores</p>
                 </a>
                 <a href="<?= BASE_URL ?>/administrador/dashboard">
                     <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/Dashboard.png"

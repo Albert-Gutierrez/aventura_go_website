@@ -24,7 +24,6 @@ switch ($request) {
         require BASE_PATH . '/app/views/website/index.html'; //redirige a la pagina de inicio
         break;
 
-
     //inicio rutas login
     case '/login':
         require BASE_PATH . '/app/views/auth/login.php'; //redirige a el login 
@@ -48,11 +47,26 @@ switch ($request) {
         require BASE_PATH . '/app/controllers/proveedor.php';  //redirige al guardar proveedor
         break;
 
-         case '/administrador/tabla':
-        require BASE_PATH . '/app/views/dashboard/administrador/tabla.php';  //redirige a la tabla
+    case '/administrador/editar-proveedor':
+        require BASE_PATH . '/app/views/dashboard/administrador/editar_proveedor.php';  //redirige a editar proveedor
+        break;
+
+         case '/administrador/consultar-proveedor':
+        require BASE_PATH . '/app/views/dashboard/administrador/consultar_proveedor.php';  //redirige a la tabla
         break;
 
     //fin rutas administrador
+
+    //........................INICIO RUTAS PROVEEDOR TURISTICO
+        case '/proveedor/dashboard':
+        require BASE_PATH . '/app/views/dashboard/administrador/proveedor.php';  //redirige al panel de proveedor
+        break;
+
+
+    //........................FIN RUTAS PROVEEDOR TURISTICO
+
+
+
 
 
     default:

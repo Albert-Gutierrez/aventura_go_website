@@ -77,15 +77,15 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <td><?= $proveedor['ciudad'] ?></td>
                                     <td><span class="badge-activo">Activo</span></td>
                                     <td>
-                                        <button class="btn-accion btn-ver" title="Ver detalles">
+                                        <a href="" class="btn-accion btn-ver" title="Ver detalles">
                                             <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button class="btn-accion btn-editar" title="Editar">
+                                        </a>
+                                        <a href="<?= BASE_URL ?>/administrador/editar-proveedor?id= <? $proveedor['id_proveedor'] ?>" class="btn-accion btn-editar" title="Editar">
                                             <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="btn-accion btn-eliminar" title="Eliminar">
+                                        </a>
+                                        <a href="" class="btn-accion btn-eliminar" title="Eliminar">
                                             <i class="bi bi-trash"></i>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
