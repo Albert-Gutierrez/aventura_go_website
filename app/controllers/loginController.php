@@ -47,17 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $mensaje = 'Bienvenido Administrador';
             break;
         case 'proveedor':
-            $redirectUrl = '/aventura_go';
+            $redirectUrl = '/aventura_go/proveedor_turistico/listado_reservas';
             $mensaje = 'Bienvenido proveedor turistico';
             break;
 
         case 'proveedor_hotelero':
-            $redirectUrl = '/aventura_go';
+            $redirectUrl = '/aventura_go/proveedor_hotelero/historial_reservas';
             $mensaje = 'Bienvenido proveedor hotelero';
             break;
         
         case 'turista':
-            $redirectUrl = '/aventura_go/';
+            $redirectUrl = '/aventura_go/turista/descubre_tours';
             $mensaje = 'Bienvenido';
             break;
         

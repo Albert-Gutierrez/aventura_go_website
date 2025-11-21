@@ -1,7 +1,7 @@
 <?php
 
 require_once BASE_PATH . '/app/helpers/session_administrador.php';
-require_once BASE_PATH . '/app/controllers/proveedor.php';
+require_once BASE_PATH . '/app/controllers/administrador/proveedor.php';
 
 $datos = listarProveedores();
 
@@ -9,7 +9,34 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="<?= BASE_URL ?>/public/assets/dashboard/administrador/perfil_usuario/img/FAVICON.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- LIBRERIA AOS ANIMATE -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Icono de bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/dashboard/administrador/consultar_proveedor/consultar_proveedor.css">
+
+</head>
 
 <body>
     <!-- Layout Principal -->
@@ -54,7 +81,7 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                 <table id="tablaAdmin" class="table table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Foto</th>
                             <th>Empresa</th>
                             <th>Representante</th>
                             <th>Email</th>
@@ -69,7 +96,7 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                         <?php if (!empty($datos)) : ?>
                             <?php foreach ($datos as $proveedor) : ?>
                                 <tr>
-                                    <td><?= $proveedor['id_proveedor'] ?></td>
+                                    <td><img src=" <?= BASE_URL  ?>/public/uploads/proveedor_turistico/<?= $proveedor['foto'] ?>" style="width: 40px"></td>
                                     <td><?= $proveedor['nombre_empresa'] ?></td>
                                     <td><?= $proveedor['nombre_representante'] ?></td>
                                     <td><?= $proveedor['email'] ?></td>
@@ -77,13 +104,15 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <td><?= $proveedor['ciudad'] ?></td>
                                     <td><span class="badge-activo">Activo</span></td>
                                     <td>
-                                        <a href="" class="btn-accion btn-ver" title="Ver detalles">
+                                        <a href="" class="btn-accion btn-ver" title="Ver proveedor">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="<?= BASE_URL ?>/administrador/editar-proveedor?id= <? $proveedor['id_proveedor'] ?>" class="btn-accion btn-editar" title="Editar">
+                                        <!-- aca EDITAMOS un solo proveedor que aparece en la tabla -->
+                                        <a href="<?= BASE_URL ?>/administrador/editar-proveedor?id=<?= $proveedor['id_proveedor'] ?>" class="btn-accion btn-editar" title="Editar">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <a href="" class="btn-accion btn-eliminar" title="Eliminar">
+                                        <!-- aca ELIMINAMOS UN SOLO PROVEEDOR -->
+                                        <a href="<?= BASE_URL ?>/administrador/eliminar-proveedor?accion=eliminar&id=<?= $proveedor['id_proveedor'] ?>" class="btn-accion btn-eliminar" title="Eliminar">
                                             <i class="bi bi-trash"></i>
                                         </a>
                                     </td>
@@ -112,6 +141,10 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                 <div class="modal-body">
                     <form>
                         <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Foto</label>
+                                <input type="file" class="form-control" placeholder="foto">
+                            </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Empresa</label>
                                 <input type="text" class="form-control" placeholder="Nombre de la empresa">

@@ -1,0 +1,142 @@
+<?php
+// Incluye la configuración de la base de datos
+require_once __DIR__ . '/../../config/database.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once __DIR__ . '/../../vendor/PHPMailer/Exception.php';
+require_once __DIR__ . '/../../vendor/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../../vendor/PHPMailer/SMTP.php';
+
+
+
+class Recoverypass
+{
+    private $conexion; // Propiedad para almacenar la conexión a la base de datos
+
+    // Constructor: se ejecuta automáticamente cuando se crea el objeto
+    public function __construct()
+    {
+        $db = new conexion(); // Crea una nueva instancia de la clase conexion (config/database.php)
+        $this->conexion = $db->getConexion(); // Obtiene la conexión PDO y la guarda en $this->conexion
+    }
+
+    public function recuperarClave($email)
+    {
+        try {
+            $consultar = "SELECT * FROM usuario WHERE email = :correo AND estado = 'activo' LIMIT 1";
+            $resultado = $this->conexion->prepare($consultar);
+            $resultado->bindParam(':correo', $email);
+            $resultado->execute();
+            $user = $resultado->fetch();
+
+            if ($user) {
+                // generamos la nueva contraseña a partir de una base de caracteres y un random
+                $base = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                // mezclamos la cadena de caracteres
+                $random = str_shuffle($base);
+
+                // sustraemos una cantidad definida de este random
+                $nuevaClave = substr($random, 0, 6); //el cero es la posicion inicial y el 6 la cantidad de caracteres
+
+                $claveHash = password_hash($nuevaClave, PASSWORD_BCRYPT);
+
+                // Actualizamos la contraseña en la base de datos
+                $actualizar = "UPDATE usuario SET clave = :nuevaClave WHERE id_usuario = :id";
+                $stmtActualizar = $this->conexion->prepare($actualizar);
+                $stmtActualizar->bindParam(':nuevaClave', ($claveHash));
+                $stmtActualizar->bindParam(':id', $user['id_usuario']);
+                $stmtActualizar->execute();
+
+
+                // SEENCIA AL EMAIL CON LA NUEVA CONTRASEÑA
+                $mail = new PHPMailer(true);
+
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = 0;                      //Enable verbose debug output
+                    $mail->isSMTP();                                            //Send using SMTP
+                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                    $mail->Username   = 'aventurago.contacto@gmail.com';                     //SMTP username
+                    $mail->Password   = 'wewjiourqboyxypu';                               //SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
+
+                    //Recipients
+                    // emison y nombre de la persona o rol 
+                    $mail->setFrom('aventurago.contacto@gmail.com', 'Soporte Aventura_go');
+                    // receptor, a quien quiero que llegue el correo
+                    $mail->addAddress($user['email'], $user['nombre']);     //Add a recipient
+                    // $mail->addAddress('ellen@example.com');    mation');
+                    // $mail->addCC('cc@example.com');           //Name is optional
+                    // $mail->addReplyTo('info@example.com', 'Infor
+                    // $mail->addBCC('bcc@example.com');
+
+                    //Attachments
+                    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+                    //Content
+                    $mail->isHTML(true);
+                    $mail->CharSet = "UTF-8";
+                    $mail->Subject = "Aventura_go - Nueva clave generada";                            //Set email format to HTML
+                    $mail->Body    = <<<HTML
+                        <div style="font-family: Lato, Arial, sans-serif; background-color: #F8F9FA; padding: 40px;">
+                            <div style="max-width: 650px; margin: auto; background: #FFFFFF; border-radius: 10px; overflow: hidden; border: 1px solid #E0E0E0;">
+
+                                <!-- ENCABEZADO CON COLOR PRIMARIO -->
+                                <div style="background-color: #2D4059; padding: 25px; text-align: center;">
+                                    <img src="https://raw.githubusercontent.com/Albert-Gutierrez/Aventura-Go/refs/heads/main/assets/estilos_globales/img/LOGO-POSITIVO.png" alt="Aventura Go" style="width: 160px; margin-bottom: 10px;">
+                                </div>
+
+                                <!-- CONTENIDO -->
+                                <div style="padding: 30px; color: #2B2B2B; font-size: 16px;">
+
+                                    <h2 style="color: #000000; margin: 0; font-family: Raleway, Arial, sans-serif; text-align: center; font-size: 15px;">
+                                        Señor usuario, Se ha generado una nueva contraseña para tu cuenta. <br>
+                                        Por motivos de seguridad, te recomendamos cambiarla inmediatamente después de iniciar sesión.
+                                    </h2>
+    
+                                    <p style="margin-bottom: 15px; text-align: center; font-size: 25px; ">
+                                        <strong style="color: #EA8217;">Nueva contraseña generada:</strong><br>
+                                        $nuevaClave
+                                    </p>
+
+                                    <p style="margin-bottom: 10px;  text-align: center; font-size: 13px; ">
+                                        Si no solicitaste este cambio, por favor contacta a nuestro equipo de soporte inmediatamente.
+                                    </p>
+
+                                </div>
+
+                                <!-- PIE DE PÁGINA -->
+                                <div style="background-color: #2D4059; color: #FFFFFF; padding: 15px; text-align: center; font-size: 13px;">
+                                    Mensaje enviado desde el formulario de recuperacion de contraseña de <strong>Aventura Go</strong>.
+                                </div>
+
+                            </div>
+                        </div>
+                    HTML;
+                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                    $mail->send();
+                    echo 'Message has been sent';
+
+                    return true;
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            } else {
+                return ['error' => 'Usuario no encontrado o inactivo'];
+            }
+        } catch (PDOException $e) {
+            // Si hay un error en base de datos, lo registra en el log del servidor
+            error_log("Error en recuperar clave:-> " . $e->getMessage());
+
+            // Retorna un mensaje genérico al usuario para no revelar detalles internos
+            return ['Error' => 'Error interno del servidor'];
+        }
+    }
+}

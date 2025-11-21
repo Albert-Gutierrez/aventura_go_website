@@ -1,36 +1,36 @@
     <div class="panel">
 
-            <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/LOGO-POSITIVO 2 (1).png" alt="logo">
+        <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/LOGO-POSITIVO 2 (1).png" alt="logo">
 
-            <div class="items">
+        <div class="items">
 
-                <a href="">
+            <!-- <a href="">
                     <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/inicio.png" alt="inicio">
                     <p>inicio</p>
-                </a>
-                <a href="<?= BASE_URL ?>/administrador/registrar-proveedor">
-                    <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/tours.png" alt="tours">
-                    <p>registrar Proveedor</p>
-                </a>
-                <a href="<?= BASE_URL ?>/administrador/consultar-proveedor">
-                    <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/destino 2.png" alt="destinos">
-                    <p>Consultar Proveedores</p>
-                </a>
-                <a href="<?= BASE_URL ?>/administrador/dashboard">
-                    <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/Dashboard.png"
-                        alt="dashboard">
-                    <p>Dashboard</p>
-                </a>
-                <a href="">
-                    <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/listado.png" alt="listado">
-                    <p>Listado de Reservas</p>
-                </a>
-                <a href="">
-                    <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/historial.png"
-                        alt="historial">
-                    <p>Historial de reservas</p>
-                </a>
-
-            </div>
+                </a> -->
+            <a href="<?= BASE_URL ?>/administrador/registrar-proveedor">
+                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/tours.png" alt="tours">
+                <p>registrar Proveedor</p>
+            </a>
+            <a href="<?= BASE_URL ?>/administrador/consultar-proveedor">
+                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/destino 2.png" alt="destinos">
+                <p>Consultar Proveedores</p>
+            </a>
+            <a href="<?= BASE_URL ?>/administrador/dashboard">
+                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/Dashboard.png"
+                    alt="dashboard">
+                <p>Dashboard</p>
+            </a>
+            <a href="">
+                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/listado.png" alt="listado">
+                <p>Listado de Reservas</p>
+            </a>
+            <a href="">
+                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/historial.png"
+                    alt="historial">
+                <p>Historial de reservas</p>
+            </a>
 
         </div>
+
+    </div>

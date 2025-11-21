@@ -19,6 +19,9 @@
      <!-- JS -->
     <script src="<?= BASE_URL ?>/public/assets/dashboard/administrador/registrar_proveedor/registrar_proveedor.js"></script>
 
+    <script src="<?= BASE_URL ?>/public/assets/dashboard/administrador/registrar_proveedor/actualizar_proveedor.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 

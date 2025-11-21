@@ -41,7 +41,7 @@ function mostrarSweetAlert($tipo, $titulo, $mensaje, $redirect = null) {
                     background-color: #00304D !important;
                 }
             </style>
-            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>;
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         </head>
         <body>
             <script>

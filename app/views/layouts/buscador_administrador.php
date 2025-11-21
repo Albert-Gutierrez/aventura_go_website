@@ -1,3 +1,20 @@
+<?php
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
+include_once __DIR__ . '/../../helpers/alert_helper.php';
+
+//ENLAZAMOS LA DEPENDENCIA EN ESTE CASO EL CONTROLADOR QUE TIENE LA FUNCION DE CONSULTA
+require_once __DIR__ . '/../../controllers/perfilController.php';
+
+//asignamos el valor id del registro segun la tabla
+$id = $_SESSION['user']['id'];
+
+$usuario = mostrarPerfilAdmin($id);
+
+?>
+
+
 <form action="busqueda">
                 <input type="text">
                 <i class="bi bi-search"></i>
@@ -8,12 +25,15 @@
                 <!-- Dropdown con Bootstrap -->
                 <div class="dropdown" id="perfil-dropdown">
                     <a href="#" id="perfil" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/perfil.png"
-                            alt="persona">
-                        <p>AR-Ana</p>
+                        <img src="<?= BASE_URL ?>/public/uploads/usuarios/<?= $usuario['foto'] ?>" alt="foto-usuario">
+                    <div class="info-usuario">
+                        <p><?= $usuario['nombre'] ?></p>
+                        <h6><?= $usuario['rol'] ?></h6>
+                    </div>
+                        
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="perfil_usuario.html"><i class="bi bi-person"></i> Mi Perfil</a>
+                        <li><a class="dropdown-item" href="<?= BASE_URL?>/administrador/perfil"><i class="bi bi-person"></i> Mi Perfil</a>
                         </li>
                         <hr class="dropdown-divider">
                         </li>

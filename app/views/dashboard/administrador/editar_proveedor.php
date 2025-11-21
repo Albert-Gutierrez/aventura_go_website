@@ -1,6 +1,24 @@
 <?php
 include_once __DIR__ . '/../../layouts/header_administrador.php';
+
+//ENLAZAMOS LA DEPENDENCIA EN ESTE CASO EL
+// CONTROLADOR QUE TIENE LA FUNCION DE CONSULTA
+require_once BASE_PATH . '/app/controllers/administrador/proveedor.php';
+
+//asignamos el valor id del registro segun la tabla
+$id = $_GET['id'];
+//llamamos la funcion especifica del controlador y le pasamos los daros a una variable que podamos manipular en este archivo
+$proveedor = listarProveedorId($id);
+
+$actividadesSeleccionadas = [];
+
+if (!empty($proveedor['actividades'])) {
+    // Quitar espacios después de la coma para evitar errores
+    $actividadesSeleccionadas = array_map('trim', explode(",", $proveedor['actividades']));
+}
+
 ?>
+
 
 <body>
     <!-- Layout Principal con Panel y Contenido -->
@@ -20,7 +38,9 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
             ?>
 
             <!-- Formulario Wizard -->
-            <form id="formProveedor" action="<?= BASE_URL ?>/administrador/editar-proveedor" method="POST" enctype="multipart/form-data">
+            <form id="formProveedor" action="<?= BASE_URL ?>/administrador/actualizar-proveedor" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id_proveedor" value="<?= $proveedor['id_proveedor'] ?>">
+                <input type="hidden" name="accion" value="actualizar">
 
 
                 <div class="wizard-container">
@@ -54,23 +74,23 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nombre de la Empresa *</label>
-                                    <input type="text" name="nombre_empresa" class="form-control" id="empresa" placeholder="Ej: Aventuras Extremas SAS" required>
+                                    <input type="text" name="nombre_empresa" class="form-control" id="empresa" placeholder="Ej: Aventuras Extremas SAS" required value="<?= $proveedor['nombre_empresa'] ?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIT/RUT *</label>
-                                    <input type="text" name="nit_rut" class="form-control" id="nit" placeholder="123456789-0" required>
+                                    <input type="text" name="nit_rut" class="form-control" id="nit" placeholder="123456789-0" required value="<?= $proveedor['nit_rut'] ?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nombres y apellidos del Representante *</label>
-                                    <input type="text" name="nombre_representante" class="form-control" id="representante" placeholder="Juan Pérez" required>
+                                    <input type="text" name="nombre_representante" class="form-control" id="representante" placeholder="Juan Pérez" required value="<?= $proveedor['nombre_representante'] ?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email *</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="contacto@empresa.com" required>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="contacto@empresa.com" required value="<?= $proveedor['email'] ?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Teléfono *</label>
-                                    <input type="tel" name="telefono" class="form-control" id="telefono" placeholder="+57 300 123 4567" required>
+                                    <input type="tel" name="telefono" class="form-control" id="telefono" placeholder="+57 300 123 4567" required value="<?= $proveedor['telefono'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -84,45 +104,54 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="rafting" value="Rafting">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="rafting" value="Rafting"
+                                                    <?= in_array("Rafting", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🚣 Rafting</label>
                                             </div>
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="parapente" value="Parapente">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="parapente" value="Parapente"
+                                                    <?= in_array("Parapente", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🪂 Parapente</label>
                                             </div>
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="senderismo" value="Senderismo">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="senderismo" value="Senderismo"
+                                                    <?= in_array("Senderismo", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🥾 Senderismo</label>
                                             </div>
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="escalada" value="Escalada">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="escalada" value="Escalada"
+                                                    <?= in_array("Escalada", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🧗 Escalada</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="buceo" value="Buceo">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="buceo" value="Buceo"
+                                                    <?= in_array("Buceo", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🤿 Buceo</label>
                                             </div>
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="camping" value="Camping">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="camping" value="Camping"
+                                                    <?= in_array("Camping", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🏕 Camping</label>
                                             </div>
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="ciclismo" value="Ciclismo de Montaña">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="ciclismo" value="Ciclismo de Montaña"
+                                                    <?= in_array("Ciclismo de Montaña", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🚵 Ciclismo de Montaña</label>
                                             </div>
                                             <div class="form-check mb-2">
-                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="canopy" value="Canopy">
+                                                <input class="form-check-input" type="checkbox" name="actividades[]" id="canopy" value="Canopy"
+                                                    <?= in_array("Canopy", $actividadesSeleccionadas) ? "checked" : "" ?>>
                                                 <label class="form-check-label">🌲 Canopy</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Descripción actividades*</label>
-                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Describe los servicios que ofreces..." required></textarea>
+                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Describe los servicios que ofreces..." required><?= $proveedor['descripcion'] ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -133,15 +162,15 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">departamento *</label>
-                                    <input type="text" name="departamento" class="form-control" id="departamento" placeholder="Juan Pérez" required>
+                                    <input type="text" name="departamento" class="form-control" id="departamento" placeholder="Juan Pérez" required value="<?= $proveedor['departamento'] ?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Ciudad *</label>
-                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Ej: Medellín" required>
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Ej: Medellín" required value="<?= $proveedor['ciudad'] ?>">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Dirección *</label>
-                                    <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Calle 123 #45-67" required>
+                                    <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Calle 123 #45-67" required value="<?= $proveedor['direccion'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -207,9 +236,16 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
         </div>
     </section>
 
-    <?php
-    include_once __DIR__ . '/../../layouts/footer_administrador.php';
-    ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script src="<?= BASE_URL ?>/public/assets/dashboard/administrador/registrar_proveedor/actualizar_proveedor.js"></script>
+
 </body>
 
 </html>

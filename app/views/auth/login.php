@@ -35,7 +35,7 @@
                     </div>
 
                     <p class="forgot-password">
-                        <a href="public/resetPassword.html">¿Olvidaste tu contraseña?</a>
+                        <a href="recoverpw">¿Olvidaste tu contraseña?</a>
                     </p>
 
                     <button type="submit" class="btn w-100 rounded-pill fw-bold text-white"

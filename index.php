@@ -24,14 +24,24 @@ switch ($request) {
         require BASE_PATH . '/app/views/website/index.html'; //redirige a la pagina de inicio
         break;
 
-    //inicio rutas login
+    //........................inicio rutas login
     case '/login':
         require BASE_PATH . '/app/views/auth/login.php'; //redirige a el login 
         break;
     case '/iniciar-sesion':
         require BASE_PATH . '/app/controllers/loginController.php'; //redirige al inicio de sesion
         break;
-    //fin rutas login
+
+    case '/recoverpw':
+        require BASE_PATH . '/app/views/auth/resetPassword.php';
+        break;
+
+    case '/generar-clave':
+        require BASE_PATH . '/app/controllers/paswordController.php';
+        break;
+
+    //::::::::::::::::::::::fin rutas login
+
 
 
     //........................inicio rutas administrador
@@ -44,27 +54,57 @@ switch ($request) {
         break;
 
     case '/administrador/guardar-proveedor':
-        require BASE_PATH . '/app/controllers/proveedor.php';  //redirige al guardar proveedor
+        require BASE_PATH . '/app/controllers/administrador/proveedor.php';  //redirige a guardar proveedor
+        break;
+
+    case '/administrador/consultar-proveedor':
+        require BASE_PATH . '/app/views/dashboard/administrador/consultar_proveedor.php';  //redirige a la tabla
         break;
 
     case '/administrador/editar-proveedor':
         require BASE_PATH . '/app/views/dashboard/administrador/editar_proveedor.php';  //redirige a editar proveedor
         break;
 
-         case '/administrador/consultar-proveedor':
-        require BASE_PATH . '/app/views/dashboard/administrador/consultar_proveedor.php';  //redirige a la tabla
+    case '/administrador/actualizar-proveedor':
+        require BASE_PATH . '/app/controllers/administrador/proveedor.php';  //redirige a actualizar proveedor
         break;
 
-    //fin rutas administrador
+    case '/administrador/eliminar-proveedor':
+        require BASE_PATH . '/app/controllers/administrador/proveedor.php';  //redirige a editar proveedor
+        break;
+
+    case '/administrador/perfil':
+        require BASE_PATH . '/app/views/dashboard/administrador/perfil_usuario.php';  //redirige a editar proveedor
+        break;
+
+    //:::::::::::::::::::::::::fin rutas administrador
+
+
 
     //........................INICIO RUTAS PROVEEDOR TURISTICO
-        case '/proveedor/dashboard':
+    case '/proveedor/dashboard':
+        require BASE_PATH . '/app/views/dashboard/administrador/proveedor.php';  //redirige al panel de proveedor
+        break;
+
+    //........................FIN RUTAS PROVEEDOR TURISTICO
+
+
+
+    //........................INICIO RUTAS PROVEEDOR HOTELERO
+    case '/proveedor_hotelero/dashboard':
         require BASE_PATH . '/app/views/dashboard/administrador/proveedor.php';  //redirige al panel de proveedor
         break;
 
 
-    //........................FIN RUTAS PROVEEDOR TURISTICO
+    //........................FIN RUTAS PROVEEDOR HOTELERO
 
+
+    //........................INICIO RUTAS TURISTA (USUARIO)
+    case '/turista/dashboard':
+        require BASE_PATH . '/app/views/dashboard/administrador/proveedor.php';  //redirige al panel de proveedor
+        break;
+
+    //........................FIN RUTAS TURISTA (USUARIO)
 
 
 

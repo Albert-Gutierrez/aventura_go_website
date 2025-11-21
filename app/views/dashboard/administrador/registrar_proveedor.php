@@ -19,7 +19,7 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
             include_once __DIR__ . '/../../layouts/buscador_administrador.php';
             ?>
 
-            <!-- Formulario Wizard -->
+            <!-- (Formulario Wizard)  ACA DESDE EL form "ACTION" ENVIO LOS DATOS AL ROUTEADOR INDEX-->
             <form id="formProveedor" action="<?= BASE_URL ?>/administrador/guardar-proveedor" method="POST" enctype="multipart/form-data">
 
 
@@ -120,10 +120,17 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">foto</label>
+                                    <input type="file" accept=".jpg, .png, .jpeg" name="foto" id="foto">
+
+                                </div>
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Descripción actividades*</label>
                                     <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Describe los servicios que ofreces..." required></textarea>
                                 </div>
+
                             </div>
                         </div>
 

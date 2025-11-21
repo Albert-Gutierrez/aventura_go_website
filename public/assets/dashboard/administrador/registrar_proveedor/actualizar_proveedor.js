@@ -21,7 +21,7 @@ function showStep(step) {
 
     // Si es el paso final → pasa a "Registrar"
     if (step === 4) {
-        nextBtn.innerHTML = `Registrar <i class="fas fa-check"></i>`;
+        nextBtn.innerHTML = `actualizar <i class="fas fa-check"></i>`;
         nextBtn.type = "submit"; // ✅ Aquí ya envía
         loadPreview(); // ✅ cargar vista previa
     } else {
