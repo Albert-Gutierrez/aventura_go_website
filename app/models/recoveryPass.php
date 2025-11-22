@@ -2,13 +2,10 @@
 // Incluye la configuración de la base de datos
 require_once __DIR__ . '/../../config/database.php';
 
+require __DIR__ . '/../../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-require_once __DIR__ . '/../../vendor/PHPMailer/Exception.php';
-require_once __DIR__ . '/../../vendor/PHPMailer/PHPMailer.php';
-require_once __DIR__ . '/../../vendor/PHPMailer/SMTP.php';
-
 
 
 class Recoverypass
@@ -51,7 +48,7 @@ class Recoverypass
                 $stmtActualizar->execute();
 
 
-                // SEENCIA AL EMAIL CON LA NUEVA CONTRASEÑA
+                // SE ENvIA AL EMAIL CON LA NUEVA CONTRASEÑA
                 $mail = new PHPMailer(true);
 
                 try {
@@ -125,7 +122,7 @@ class Recoverypass
                     echo 'Message has been sent';
 
                     return true;
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
             } else {

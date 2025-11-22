@@ -1,0 +1,12 @@
+{
+    "name": "34ts/aventura_go",
+    "authors": [
+        {
+            "name": "albert",
+            "email": "alberix252@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
