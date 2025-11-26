@@ -8,14 +8,14 @@ require_once __DIR__ . '/../models/login.php';
 // echo password_hash($clave, PASSWORD_DEFAULT);
 
 //ejeciutar segun la solicitud al servisor "POST"
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //capturamos en variables los valores enviados a travez de los name del formulario y el method POST
     $correo = $_POST['email'] ?? '';
     $clave = $_POST['contrasena'] ?? '';
 
     //validamos que los campos/variables no esten vacios
-    if (empty($correo) || empty($clave)){
+    if (empty($correo) || empty($clave)) {
         mostrarSweetAlert('error', 'campos vacios', 'por favor completar todos los campos');
         exit();
     }
@@ -55,27 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $redirectUrl = '/aventura_go/proveedor_hotelero/historial_reservas';
             $mensaje = 'Bienvenido proveedor hotelero';
             break;
-        
+
         case 'turista':
             $redirectUrl = '/aventura_go/turista/descubre_tours';
             $mensaje = 'Bienvenido';
             break;
-        
     }
     mostrarSweetAlert('success', 'ingreso exitoso', $mensaje, $redirectUrl);
     exit();
-
-} 
-else{
+} else {
     http_response_code(405);
     echo "Metodo no permitido";
     exit();
 }
-
-
-
-
-
-
-
-?>

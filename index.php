@@ -85,8 +85,10 @@ switch ($request) {
         reportesPdfController();
         break;
 
-    case 'administrador/cambiar-pasword':
+    case '/administrador/cambiar-password':
         require BASE_PATH . '/app/controllers/passwordChangeController.php';
+        $controller = new PasswordChangeController();
+        $controller->cambiarClave();
         break;
 
     // Registrar el Proveedor Hotelero

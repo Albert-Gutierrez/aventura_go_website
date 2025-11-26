@@ -177,13 +177,13 @@ $usuario = mostrarPerfilAdmin($id);
                         <input type="hidden" name="accion" value="cambiar_password">
 
                         <h4>Contraseña Actual</h4>
-                        <input type="password" name="password_actual" placeholder="Contraseña actual" required>
+                        <input type="password" name="clave_actual" placeholder="Contraseña actual" required>
 
                         <h4>Nueva contraseña</h4>
-                        <input type="password" name="password_nueva" placeholder="Ingresa nueva contraseña" required minlength="6">
+                        <input type="password" name="clave_nueva" placeholder="Ingresa nueva contraseña" required minlength="6">
 
                         <h4>Confirmar Contraseña</h4>
-                        <input type="password" name="password_confirmar" placeholder="Confirma nueva contraseña" required minlength="6">
+                        <input type="password" name="confirmar" placeholder="Confirma nueva contraseña" required minlength="6">
 
                         <button type="submit">Cambiar Contraseña</button>
                     </form>
