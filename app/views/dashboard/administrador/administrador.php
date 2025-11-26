@@ -172,6 +172,9 @@ require_once BASE_PATH . '/app/helpers/session_administrador.php';
     require_once __DIR__ . '/../../layouts/footer_administrador.php'
     ?>
 
+
+
+
 </body>
 
 </html>

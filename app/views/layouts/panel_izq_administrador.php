@@ -4,33 +4,44 @@
 
         <div class="items">
 
-            <!-- <a href="">
-                    <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/inicio.png" alt="inicio">
-                    <p>inicio</p>
-                </a> -->
-            <a href="<?= BASE_URL ?>/administrador/registrar-proveedor">
-                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/tours.png" alt="tours">
-                <p>registrar Proveedor</p>
-            </a>
-            <a href="<?= BASE_URL ?>/administrador/consultar-proveedor">
-                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/destino 2.png" alt="destinos">
-                <p>Consultar Proveedores</p>
-            </a>
             <a href="<?= BASE_URL ?>/administrador/dashboard">
                 <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/Dashboard.png"
                     alt="dashboard">
                 <p>Dashboard</p>
             </a>
-            <a href="">
-                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/listado.png" alt="listado">
-                <p>Listado de Reservas</p>
-            </a>
-            <a href="">
-                <img src="<?= BASE_URL ?>/public/assets/dashboard/administrador/administrador/img/historial.png"
-                    alt="historial">
-                <p>Historial de reservas</p>
-            </a>
+
+            <div class="dropdown-panel" id="Turistico">
+                <a class="btn btn-secondary dropdown-toggle" id="btn-panel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Proveedor Turistico
+                </a>
+                <ul class="dropdown-menu" id="menu-panel">
+                    <li><a class="dropdown-item" href="<?= BASE_URL ?>/administrador/registrar-proveedor-turistico" <i class="bi bi-layout-text-sidebar-reverse"></i>Registrar Proveedor</a></li>
+                    <li><a class="dropdown-item" href="<?= BASE_URL ?>/administrador/consultar-proveedor-turistico" <i class="bi bi-table"></i>Consultar Proveedor</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" id="btn-panel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Proveedor Hotelero
+                </a>
+                <ul class="dropdown-menu" id="menu-panel">
+                    <li><a class="dropdown-item" href="<?= BASE_URL ?>/administrador/registrar-proveedor-hotelero">Registrar Proveedor</a></li>
+                    <li><a class="dropdown-item" href="<?= BASE_URL ?>/administrador/consultar-proveedor-hotelero">Consultar Proveedor</a></li>
+
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle-aventura" id="btn-panel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Turista
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                </ul>
+            </div>
 
         </div>
 
+            
     </div>

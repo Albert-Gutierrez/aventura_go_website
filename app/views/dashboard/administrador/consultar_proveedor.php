@@ -60,6 +60,13 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                 <h1>Gestión de Proveedores</h1>
             </div>
 
+            <a href="<?= BASE_URL ?>/administrador/reporte?tipo=proveedores"
+                class="btn btn-danger"
+                target="_blank"
+                title="Generar PDF">
+                <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF</a>
+            <hr>
+
             <!-- Filtros Rápidos -->
             <div class="filtros-rapidos">
                 <button class="filtro-btn active" data-filter="all">
@@ -104,8 +111,9 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <td><?= $proveedor['ciudad'] ?></td>
                                     <td><span class="badge-activo">Activo</span></td>
                                     <td>
-                                        <a href="" class="btn-accion btn-ver" title="Ver proveedor">
+                                        <a class="btn-accion btn-ver" title="Ver Proveedor">
                                             <i class="bi bi-eye"></i>
+                                        </a>
                                         </a>
                                         <!-- aca EDITAMOS un solo proveedor que aparece en la tabla -->
                                         <a href="<?= BASE_URL ?>/administrador/editar-proveedor?id=<?= $proveedor['id_proveedor'] ?>" class="btn-accion btn-editar" title="Editar">
@@ -188,6 +196,7 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
     <?php
     require_once __DIR__ . '/../../layouts/footer_administrador.php';
     ?>
+
 
 
 </body>

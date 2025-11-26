@@ -21,26 +21,61 @@ body {
     width: 280px;
     background-color: #2D4059;
     padding: 30px 20px;
-    position: fixed;
-    height: 100vh;
-    overflow-y: auto;
+    display: block;
 }
 
-.panel > img {
+.panel>img {
     width: 150px;
     margin: 0 auto 40px auto;
     display: block;
 }
 
-.items {
+/* Items del menú */
+.items{
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.items a {
+#btn-panel {
+    background: transparent;
+    color: #ffffff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all .3s ease;
+    border: none;
+}
+
+.dropdown-toggle-aventura::after{
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+#menu-panel a{
+    color: #2D4059;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #2D4059;
     display: flex;
     align-items: center;
+    gap: 10px;
+}
+
+#menu-panel a:hover{
+    color: #EA8217;
+    background: #ffffff;
+}
+
+.items a {
+    display: flex;
     gap: 15px;
     padding: 12px 15px;
     color: #ecf0f1;
@@ -49,9 +84,8 @@ body {
     transition: all 0.3s ease;
 }
 
-.items a:hover,
-.items a.active {
-    background-color: #EA8217;
+.items a:hover {
+    background-color: #34495e;
 }
 
 .items a img {
@@ -62,14 +96,12 @@ body {
 .items a p {
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
-    margin: 0;
+    color: #ffffff;
 }
 
 /* ========== CONTENIDO PRINCIPAL ========== */
 .info {
     flex-grow: 1;
-    margin-left: 280px;
     padding: 20px 40px;
     background-color: #ffffff;
 }

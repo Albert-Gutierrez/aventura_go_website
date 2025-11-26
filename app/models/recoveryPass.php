@@ -1,13 +1,9 @@
 <?php
-// Incluye la configuración de la base de datos
+
 require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../helpers/mailer_helper.php';
 
-require __DIR__ . '/../../vendor/autoload.php';
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-
+// Define la clase Recoverypass
 class Recoverypass
 {
     private $conexion; // Propiedad para almacenar la conexión a la base de datos
@@ -21,7 +17,7 @@ class Recoverypass
 
     public function recuperarClave($email)
     {
-        try {
+        try { // Consulta para verificar si el usuario existe y está activo
             $consultar = "SELECT * FROM usuario WHERE email = :correo AND estado = 'activo' LIMIT 1";
             $resultado = $this->conexion->prepare($consultar);
             $resultado->bindParam(':correo', $email);
@@ -38,6 +34,7 @@ class Recoverypass
                 // sustraemos una cantidad definida de este random
                 $nuevaClave = substr($random, 0, 6); //el cero es la posicion inicial y el 6 la cantidad de caracteres
 
+                // Hasheamos la nueva contraseña antes de guardarla
                 $claveHash = password_hash($nuevaClave, PASSWORD_BCRYPT);
 
                 // Actualizamos la contraseña en la base de datos
@@ -48,39 +45,28 @@ class Recoverypass
                 $stmtActualizar->execute();
 
 
-                // SE ENvIA AL EMAIL CON LA NUEVA CONTRASEÑA
-                $mail = new PHPMailer(true);
+                // SE ENVIA AL EMAIL CON LA NUEVA CONTRASEÑA
 
-                try {
-                    //Server settings
-                    $mail->SMTPDebug = 0;                      //Enable verbose debug output
-                    $mail->isSMTP();                                            //Send using SMTP
-                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    $mail->Username   = 'aventurago.contacto@gmail.com';                     //SMTP username
-                    $mail->Password   = 'wewjiourqboyxypu';                               //SMTP password
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
+                $mail = mailer_init();
 
-                    //Recipients
-                    // emison y nombre de la persona o rol 
-                    $mail->setFrom('aventurago.contacto@gmail.com', 'Soporte Aventura_go');
-                    // receptor, a quien quiero que llegue el correo
-                    $mail->addAddress($user['email'], $user['nombre']);     //Add a recipient
-                    // $mail->addAddress('ellen@example.com');    mation');
-                    // $mail->addCC('cc@example.com');           //Name is optional
-                    // $mail->addReplyTo('info@example.com', 'Infor
-                    // $mail->addBCC('bcc@example.com');
+                //Recipients
+                // emison y nombre de la persona o rol 
+                $mail->setFrom('aventurago.contacto@gmail.com', 'Soporte Aventura_go');
+                // receptor, a quien quiero que llegue el correo
+                $mail->addAddress($user['email'], $user['nombre']);     //Add a recipient
+                // $mail->addAddress('ellen@example.com');    mation');
+                // $mail->addCC('cc@example.com');           //Name is optional
+                // $mail->addReplyTo('info@example.com', 'Infor
+                // $mail->addBCC('bcc@example.com');
 
-                    //Attachments
-                    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+                //Attachments
+                // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
-                    //Content
-                    $mail->isHTML(true);
-                    $mail->CharSet = "UTF-8";
-                    $mail->Subject = "Aventura_go - Nueva clave generada";                            //Set email format to HTML
-                    $mail->Body    = <<<HTML
+                //Content
+
+                $mail->Subject = "Aventura_go - Nueva clave generada";                            //Set email format to HTML
+                $mail->Body    = <<<HTML
                         <div style="font-family: Lato, Arial, sans-serif; background-color: #F8F9FA; padding: 40px;">
                             <div style="max-width: 650px; margin: auto; background: #FFFFFF; border-radius: 10px; overflow: hidden; border: 1px solid #E0E0E0;">
 
@@ -116,15 +102,11 @@ class Recoverypass
                             </div>
                         </div>
                     HTML;
-                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-                    $mail->send();
-                    echo 'Message has been sent';
+                $mail->send();
+                echo 'Message has been sent';
 
-                    return true;
-                } catch (\Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                }
+                return true;
             } else {
                 return ['error' => 'Usuario no encontrado o inactivo'];
             }

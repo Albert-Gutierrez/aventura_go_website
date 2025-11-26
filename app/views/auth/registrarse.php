@@ -41,11 +41,6 @@
                         <input type="password" placeholder="Contraseña" id="password" required>
                         <i class="bi bi-eye-fill" id="togglePassword"></i>
                     </div>
-                    <select required>
-                        <option value="" disabled selected hidden>Rol</option>
-                        <option value="turista">Turista</option>
-                        <option value="proveedor">Proveedor</option>
-                    </select>
 
                     <button type="submit">INICIO</button>
 

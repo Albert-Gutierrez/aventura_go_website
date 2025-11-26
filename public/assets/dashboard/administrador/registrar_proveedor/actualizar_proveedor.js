@@ -1,5 +1,4 @@
-
-
+// Elementos del formulario
 let currentStep = 1;
 
 // Mostrar paso

@@ -217,6 +217,8 @@ include_once __DIR__ . '/../../layouts/header_administrador.php';
     <?php
     include_once __DIR__ . '/../../layouts/footer_administrador.php';
     ?>
+
+
 </body>
 
 </html>

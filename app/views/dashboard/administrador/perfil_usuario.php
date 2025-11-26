@@ -173,18 +173,21 @@ $usuario = mostrarPerfilAdmin($id);
                     </div>
 
 
-                    <form action="cambiar" class="cambiar">
-                        <h4>Contraseña Actual</h4>
-                        <input type="text" placeholder="********">
+                    <form action="/aventura_go/administrador/cambiar-password" method="POST" class="cambiar">
+                        <input type="hidden" name="accion" value="cambiar_password">
 
-                        <h4>nueva contraseña</h4>
-                        <input type="text" placeholder="Ingresa nueva contraseña">
+                        <h4>Contraseña Actual</h4>
+                        <input type="password" name="password_actual" placeholder="Contraseña actual" required>
+
+                        <h4>Nueva contraseña</h4>
+                        <input type="password" name="password_nueva" placeholder="Ingresa nueva contraseña" required minlength="6">
 
                         <h4>Confirmar Contraseña</h4>
-                        <input type="text" placeholder="Confirma nueva contraseña">
+                        <input type="password" name="password_confirmar" placeholder="Confirma nueva contraseña" required minlength="6">
 
-                        <button>Cambiar Contraseña</button>
+                        <button type="submit">Cambiar Contraseña</button>
                     </form>
+
                 </div>
             </div>
 

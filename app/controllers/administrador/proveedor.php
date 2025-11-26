@@ -137,7 +137,7 @@ function registrarProveedor()
     $resultado = $objProveedor->registrar($data);
 
     if ($resultado === true) {
-        mostrarSweetAlert('success', 'Registro exitoso', 'Proveedor registrado.', '/aventura_go/administrador/registrar-proveedor');
+        mostrarSweetAlert('success', 'Registro exitoso', 'Proveedor registrado.', '/aventura_go/administrador/registrar-proveedor-turistico');
     } else {
         mostrarSweetAlert('error', 'Error al registrar', 'No se pudo registrar el proveedor.');
     }
@@ -219,7 +219,7 @@ function actualizarProveedor()
     $resultado = $objProveedor->actualizar($data);
 
     if ($resultado === true) {
-        mostrarSweetAlert('success', 'Actualizacion exitoso', 'Proveedor Actualizado.', '/aventura_go/administrador/consultar-proveedor');
+        mostrarSweetAlert('success', 'Actualizacion exitoso', 'Proveedor Actualizado.', '/aventura_go/administrador/consultar-proveedor-turistico');
     } else {
         mostrarSweetAlert('error', 'Error al Actualizar', 'No se pudo registrar el proveedor.');
     }
@@ -234,7 +234,7 @@ function eliminarProveedor($id)
     $resultado = $objProveedor->eliminarProveedor($id);
 
     if ($resultado === true) {
-        mostrarSweetAlert('success', 'Eliminacion exitosa', 'Proveedor eliminado.', '/aventura_go/administrador/consultar-proveedor');
+        mostrarSweetAlert('success', 'Eliminacion exitosa', 'Proveedor eliminado.', '/aventura_go/administrador/consultar-proveedor-turistico');
     } else {
         mostrarSweetAlert('error', 'Error al eliminar', 'No se pudo eliminar el proveedor.');
     }

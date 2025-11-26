@@ -28,6 +28,7 @@ body {
     min-height: 100vh;
 }
 
+
 /* ========== PANEL LATERAL ========== */
 .panel {
     width: 280px;
@@ -43,10 +44,47 @@ body {
 }
 
 /* Items del menú */
-.items {
+.items{
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+#btn-panel {
+    background: transparent;
+    color: #ffffff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all .3s ease;
+    border: none;
+}
+
+.dropdown-toggle-aventura::after{
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+#menu-panel a{
+    color: #2D4059;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #2D4059;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#menu-panel a:hover{
+    color: #EA8217;
+    background: #ffffff;
 }
 
 .items a {
@@ -71,7 +109,7 @@ body {
 .items a p {
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
+    color: #ffffff;
 }
 
 /* ========== CONTENIDO PRINCIPAL ========== */
@@ -422,7 +460,7 @@ form #perfil h6{
     display: inline-block;
 }
 
-.editar > #descargar {
+.editar #descargar {
     background-color: #2D4059;
     color: #ffffff;
 }
