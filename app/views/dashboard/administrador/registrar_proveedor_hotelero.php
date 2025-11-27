@@ -137,7 +137,6 @@ require_once BASE_PATH . '/app/helpers/session_administrador.php';
     </section>
 
     <!-- Bootstrap -->
-    <script src="<?= BASE_URL ?>/public/assets/dashboard/administrador/registrar_proveedor/registrar_proveedor.js"></script>
 
 
 

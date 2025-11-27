@@ -120,6 +120,34 @@ switch ($request) {
     //Fin de Registrar y consultar el Proveedor Hotelero
 
 
+    // Registrar y consultar el Turista
+    case '/administrador/registrar-turista':
+        require BASE_PATH . '/app/views/dashboard/administrador/registrar_proveedor_turistico.php';  //redirige al perfil de usuario de administrador
+        break;
+    case '/administrador/consultar-turista':
+        require BASE_PATH . '/app/views/dashboard/administrador/consultar_turista.php';  //redirige al perfil de usuario de administrador
+        break;
+
+    // CRUD del Turista
+    case '/administrador/guardar-turista':
+        require BASE_PATH . '/app/controllers/administrador/turista.php';  //redirige al guardar turista
+        break;
+    case '/administrador/editar-turista':
+        require BASE_PATH . '/app/views/dashboard/administrador/editar_turista.php';  //redirige al guardar turista
+        break;
+    case '/administrador/actualizar-turista':
+        require BASE_PATH . '/app/controllers/administrador/turista.php';  //redirige al actualizar el turista
+        break;
+    case '/administrador/eliminar-turista':
+        require BASE_PATH . '/app/controllers/administrador/turista.php';  //elimina el turista
+        break;
+    case '/administrador/reporte-turista':
+        require BASE_PATH . '/app/controllers/reportesPdfController.php';  //pdf del el turista
+        reportesPdfController();
+        break;
+    //Fin de Registrar y consultar el Turista
+
+
 
     //:::::::::::::::::::::::::fin rutas administrador
 

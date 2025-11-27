@@ -9,7 +9,7 @@ class PasswordChange
 
     public function __construct()
     {
-        $db = new conexion();               // ← ESTA ES LA CLASE REAL QUE TÚ TIENES
+        $db = new conexion();
         $this->conexion = $db->getConexion();
     }
 
