@@ -43,6 +43,11 @@ switch ($request) {
         require BASE_PATH . '/app/controllers/passwordController.php';
         break;
 
+    case '/logout':
+        require BASE_PATH . '/app/controllers/logoutController.php';
+        break;
+
+
     //::::::::::::::::::::::fin rutas login
 
 

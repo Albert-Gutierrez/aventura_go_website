@@ -1,7 +1,6 @@
 <?php
 
-
-
+require_once BASE_PATH . '/app/helpers/session_administrador.php';
 require_once __DIR__ . '/../../../helpers/alert_helper.php';
 // ENLAZAMOS LA DEPENDENCIA EN ESTE CASO EL CONTROLADOR QUE TIENE LA FUNCION DE CONSULTA
 require_once __DIR__ . '/../../../controllers/perfilController.php';

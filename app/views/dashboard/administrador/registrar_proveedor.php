@@ -1,5 +1,7 @@
 <?php
 include_once __DIR__ . '/../../layouts/header_administrador.php';
+require_once BASE_PATH . '/app/helpers/session_administrador.php';
+
 ?>
 
 <body>

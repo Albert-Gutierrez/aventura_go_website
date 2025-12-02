@@ -1,4 +1,5 @@
 <?php
+require_once BASE_PATH . '/app/helpers/session_administrador.php';
 include_once __DIR__ . '/../../layouts/header_administrador.php';
 
 //ENLAZAMOS LA DEPENDENCIA EN ESTE CASO EL
