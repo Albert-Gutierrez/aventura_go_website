@@ -58,7 +58,7 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
 
             <!-- Título y Acciones -->
             <div class="header-section">
-                <h1>Gestión de Proveedores</h1>
+                <h1>Gestión de Proveedores hoteleros</h1>
             </div>
 
             <!-- Filtros Rápidos -->

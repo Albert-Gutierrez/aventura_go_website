@@ -1,0 +1,53 @@
+<!--head  -->
+
+<body>
+
+    <section id="historial">
+
+       <!-- panel -->
+
+
+        <div class="info">
+
+       <!-- busqueda -->
+
+
+            <h1>HISTORIAL DE RESERVAS</h1>
+            <p class="ultimo-mes">Últimas reservas</p>
+
+            <!-- aca se insertan dinamicamente desde jason las reservas realizadas -->
+            <div id="reservasContainer"></div>
+
+
+        </div>
+
+
+
+    </section>
+
+    <!-- MODAL DETALLE DE RESERVA -->
+    <div id="modalReserva" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-contenido">
+            <span class="cerrar" role="button" aria-label="Cerrar">&times;</span>
+            <h2>Detalle de la Reserva</h2>
+            <div class="detalle-reserva">
+                <p><strong>Número de reserva:</strong> <span id="numReserva"></span></p>
+                <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
+                <p><strong>Identificación:</strong> <span id="identificacionUsuario"></span></p>
+                <p><strong>Fecha:</strong> <span id="fechaReserva"></span></p>
+                <p><strong>Destino:</strong> <span id="destinoReserva"></span></p>
+                <p><strong>Actividad:</strong> <span id="actividadReserva"></span></p>
+                <p><strong>Precio:</strong> <span id="precioReserva"></span></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!-- aca va el script de js -->
+
+</body>
+
+</html>

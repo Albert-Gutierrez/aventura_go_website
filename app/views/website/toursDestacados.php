@@ -19,16 +19,21 @@
             alt="Aventura Go" />
         </a>
 
-        <ul class="navbar-nav">
-          <li><a href="index.html" class="nav-link">Inicio</a></li>
-          <li><a href="destacados.html" class="nav-link active">Destacados</a></li>
-          <li><a href="acerca_de_nosotros.html" class="nav-link">Acerca de nosotros</a></li>
-          <li><a href="contactanos.html" class="nav-link">Contáctanos</a></li>
+        <ul class="navbar-nav" id="navbarNav">
+          <li><a class="nav-link" href="/aventura_go/">Inicio</a></li>
+          <li><a class="nav-link active" href="/aventura_go/destacados">Destacados</a></li>
+          <li><a class="nav-link" href="/aventura_go/acerca-de-nosotros">Acerca de nosotros</a></li>
+          <li><a class="nav-link" href="/aventura_go/contactanos">Contáctanos</a></li>
         </ul>
 
         <div class="actions">
           <a href="login" class="btn-login">Ingresa</a>
-          <a href="../extras/registrarse.html" class="btn-register">Regístrate</a>
+          <a href="registrarse" class="btn-register">Regístrate</a>
+
+          <!-- menu hambirguesa en responsive -->
+          <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+          </div>
         </div>
       </div>
     </nav>

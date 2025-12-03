@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aventura Go - contactanos</title>
+    <title>Aventura Go - INICIO</title>
 
     <link rel="icon" type="image/png" href="public/assets/website_externos/index/img/FAVICON.png">
 
@@ -51,10 +51,10 @@
 
                 <!-- Menú principal -->
                 <ul class="navbar-nav" id="navbarNav">
-                    <li><a class="nav-link active" href="index.html">Inicio</a></li>
-                    <li><a class="nav-link" href="toursDestacados.html">Destacados</a></li>
-                    <li><a class="nav-link" href="acerca_de_nosotros.html">Acerca de nosotros</a></li>
-                    <li><a class="nav-link" href="contactanos.html">Contáctanos</a></li>
+                    <li><a class="nav-link active" href="/aventura_go/">Inicio</a></li>
+                    <li><a class="nav-link" href="/aventura_go/destacados">Destacados</a></li>
+                    <li><a class="nav-link" href="/aventura_go/acerca-de-nosotros">Acerca de nosotros</a></li>
+                    <li><a class="nav-link" href="/aventura_go/contactanos">Contáctanos</a></li>
                 </ul>
 
                 <!-- Botones y menú móvil -->

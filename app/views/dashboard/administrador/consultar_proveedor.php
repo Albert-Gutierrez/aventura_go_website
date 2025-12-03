@@ -57,7 +57,7 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
 
             <!-- Título y Acciones -->
             <div class="header-section">
-                <h1>Gestión de Proveedores</h1>
+                <h1>Gestión de Proveedores turisticos</h1>
             </div>
 
             <a href="<?= BASE_URL ?>/administrador/reporte?tipo=proveedores"
@@ -110,11 +110,23 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
                                     <td><?= $proveedor['telefono'] ?></td>
                                     <td><?= $proveedor['ciudad'] ?></td>
                                     <td><span class="badge-activo">Activo</span></td>
+
+                                    <!-- OJO para colocar el estado desde aca -->
+                                    <!-- <td><select class="estado">
+                                            <option>Activo</option>
+                                            <option>Inactivo</option>
+                                            <option>Pendiente</option>
+                                        </select>
+                                    </td> -->
+
                                     <td>
                                         <a class="btn-accion btn-ver" title="Ver Proveedor">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        </a>
+                                        <!-- aca vemos un solo proveedor que aparece en la tabla -->
+                                        <!-- <a href="<?= BASE_URL ?>/administrador/consultar-proveedor-turistico?id=<?= $proveedor['id_proveedor'] ?>" class="btn-accion btn-ver" title="Ver Proveedor">
+                                            <i class="bi bi-eye"></i>
+                                        </a> -->
                                         <!-- aca EDITAMOS un solo proveedor que aparece en la tabla -->
                                         <a href="<?= BASE_URL ?>/administrador/editar-proveedor?id=<?= $proveedor['id_proveedor'] ?>" class="btn-accion btn-editar" title="Editar">
                                             <i class="bi bi-pencil"></i>
@@ -138,55 +150,112 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
         </div>
     </section>
 
-    <!-- Modal para Agregar/Editar -->
-    <div class="modal fade" id="addModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+    <!-- Modal para ver todos los datos del proveedor -->
+    <div class="modal fade" id="modalVerProveedor" tabindex="-1" aria-labelledby="modalVerProveedorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Agregar Proveedor</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="modalVerProveedorLabel">
+                        <i class="bi bi-eye-fill me-2"></i> Información Completa del Proveedor
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+
+                    <!-- Sección 1: Información Básica -->
+                    <div class="section-card mb-4">
+                        <h6 class="section-title">
+                            <i class="bi bi-building me-2"></i> Información Básica
+                        </h6>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Foto</label>
-                                <input type="file" class="form-control" placeholder="foto">
+                                <label class="form-label-sm text-muted">Empresa:</label>
+                                <p class="info-value" id="modal-empresa">-</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Empresa</label>
-                                <input type="text" class="form-control" placeholder="Nombre de la empresa">
+                                <label class="form-label-sm text-muted">NIT/RUT:</label>
+                                <p class="info-value" id="modal-nit">-</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Representante</label>
-                                <input type="text" class="form-control" placeholder="Nombre completo">
+                                <label class="form-label-sm text-muted">Representante:</label>
+                                <p class="info-value" id="modal-representante">-</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="email@empresa.com">
+                                <label class="form-label-sm text-muted">Email:</label>
+                                <p class="info-value" id="modal-email">-</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control" placeholder="+57 300 123 4567">
+                                <label class="form-label-sm text-muted">Teléfono:</label>
+                                <p class="info-value" id="modal-telefono">-</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Ciudad</label>
-                                <input type="text" class="form-control" placeholder="Ciudad">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Estado</label>
-                                <select class="form-select">
-                                    <option>Activo</option>
-                                    <option>Inactivo</option>
-                                    <option>Pendiente</option>
-                                </select>
+                                <label class="form-label-sm text-muted">Estado:</label>
+                                <span class="badge-activo" id="modal-estado">Activo</span>
                             </div>
                         </div>
-                    </form>
+                    </div>
+
+                    <!-- Sección 2: Ubicación -->
+                    <div class="section-card mb-4">
+                        <h6 class="section-title">
+                            <i class="bi bi-geo-alt me-2"></i> Ubicación
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-sm text-muted">Departamento:</label>
+                                <p class="info-value" id="modal-departamento">-</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-sm text-muted">Ciudad:</label>
+                                <p class="info-value" id="modal-ciudad">-</p>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label-sm text-muted">Dirección:</label>
+                                <p class="info-value" id="modal-direccion">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección 3: Servicios -->
+                    <div class="section-card mb-4">
+                        <h6 class="section-title">
+                            <i class="bi bi-list-check me-2"></i> Servicios Ofrecidos
+                        </h6>
+                        <div class="mb-3">
+                            <label class="form-label-sm text-muted">Actividades:</label>
+                            <div class="actividades-container" id="modal-actividades">
+                                <span class="badge-servicio">Cargando actividades...</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label-sm text-muted">Descripción:</label>
+                            <div class="card descripcion-card">
+                                <div class="card-body">
+                                    <p class="card-text" id="modal-descripcion">Sin descripción disponible.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección 4: Foto/Imagen -->
+                    <div class="section-card">
+                        <h6 class="section-title">
+                            <i class="bi bi-image me-2"></i> Fotografía
+                        </h6>
+                        <div class="text-center">
+                            <div class="foto-proveedor-container" id="foto-container">
+                                <img id="modal-foto" src="<?= BASE_URL ?>/assets/img/default-proveedor.jpg"
+                                    alt="Foto del proveedor" class="foto-proveedor">
+                            </div>
+                            <p class="text-muted small mt-2">Imagen registrada del proveedor</p>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary-custom">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i> Cerrar
+                    </button>
                 </div>
             </div>
         </div>
@@ -195,6 +264,7 @@ require_once __DIR__ . '/../../layouts/header_administrador.php';
     <!-- Scripts -->
     <?php
     require_once __DIR__ . '/../../layouts/footer_administrador.php';
+
     ?>
 
 

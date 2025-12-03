@@ -21,7 +21,7 @@
     <!-- LIBRERIA AOS ANIMATE -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/website_externos/contactanos/contactanos.css">
+    <link rel="stylesheet" href="public/assets/website_externos/contactanos/contactanos.css">
 </head>
 
 
@@ -33,23 +33,23 @@
             <div class="container">
                 <!-- Logo -->
                 <div class="logo">
-                    <img src="../assets/website_externos/contactanos/img/LOGO-NEGATIVO.png" alt="Logo Aventura Go"
+                    <img src="public/assets/website_externos/contactanos/img/LOGO-NEGATIVO.png" alt="Logo Aventura Go"
                         class="navbar-logo">
                 </div>
 
                 <!-- Menú principal -->
                 <ul class="navbar-nav" id="navbarNav">
-                    <li><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li><a class="nav-link" href="destacados.html">Destacados</a></li>
-                    <li><a class="nav-link" href="acerca_de_nosotros.html">Acerca de nosotros</a></li>
-                    <li><a class="nav-link active" href="contactanos.html">Contáctanos</a></li>
+                    <li><a class="nav-link" href="/aventura_go/">Inicio</a></li>
+                    <li><a class="nav-link" href="/aventura_go/destacados">Destacados</a></li>
+                    <li><a class="nav-link" href="/aventura_go/acerca-de-nosotros">Acerca de nosotros</a></li>
+                    <li><a class="nav-link active" href="/aventura_go/contactanos">Contáctanos</a></li>
                 </ul>
 
                 <!-- Botones y menú móvil -->
                 <div class="actions">
                     <div class="actions">
-                        <a href="../extras/login.html" class="btn-login">Ingresa</a>
-                        <a href="../extras/registrarse.html" class="btn-register">Regístrate</a>
+                        <a href="login" class="btn-login">Ingresa</a>
+                        <a href="registrarse" class="btn-register">Regístrate</a>
 
                         <!-- menu hambirguesa en responsive -->
                         <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
@@ -70,27 +70,27 @@
 
             <div class="row hero-img">
                 <div class="col-12 header-arriba">
-                    <img src="../assets/website_externos/contactanos/img/Hero_contactanos.png" alt="img contactanos">
+                    <img src="public/assets/website_externos/contactanos/img/Hero_contactanos.png" alt="img contactanos">
                     <h1 class="palpitando">CONTACTANOS</h1>
                 </div>
             </div>
 
             <div class="row hero-info">
                 <div class="col-12 col-sm-4 col-md-4 text-center p-3">
-                    <img src="../assets/website_externos/contactanos/img/hero_icon_email.png" class="icono-email"
+                    <img src="public/assets/website_externos/contactanos/img/hero_icon_email.png" class="icono-email"
                         alt="icono hero_icon_email">
                     <h2 class="h2-email">E-mail</h2>
                     <h3 class="h3-email">aventura_go@gmail.com</h3>
                     <h3 class="h3-email">aventurago.2025@gmail.com</h3>
                 </div>
                 <div class="col-12 col-sm-4 col-md-4 text-center p-3">
-                    <img src="../assets/website_externos/contactanos/img/hero_icon_phone.png" alt="icono hero_icon_phone">
+                    <img src="public/assets/website_externos/contactanos/img/hero_icon_phone.png" alt="icono hero_icon_phone">
                     <h2>Telefono</h2>
                     <h3>+57 320 123 4567</h3>
                     <h3>+57 310 987 6543</h3>
                 </div>
                 <div class="col-12 col-sm-4 col-md-4 text-center p-3">
-                    <img src="../assets/website_externos/contactanos/img/hero_icon_lugar.png" alt="icono hero_icon_lugar">
+                    <img src="public/assets/website_externos/contactanos/img/hero_icon_lugar.png" alt="icono hero_icon_lugar">
                     <h2>Direccion</h2>
                     <h3>Villeta, Cundinamarca</h3>
                     <h3>Colombia</h3>
@@ -113,7 +113,7 @@
 
                 <!-- SECCIÓN IZQUIERDA - IMAGEN Y TEXTO AZUL -->
                 <div class="seccion-izquierda">
-                    <img src="../assets/website_externos/contactanos/img/img_formulario.png" alt="img form">
+                    <img src="public/assets/website_externos/contactanos/img/img_formulario.png" alt="img form">
                     <p class="p1">¿No sabes qué destino elegir?</p>
                     <p class="p2 palpitando"><strong>Nosotros podemos ayudarte</strong></p>
                 </div>
@@ -126,16 +126,16 @@
                         experiencia algo extraordinario. Diligencia tus datos y te responderemos lo más pronto posible.
                     </p>
 
-                    <form action="https://formsubmit.co/aventurago.contacto@gmail.com" method="post">
+                    <form action="https://formsubmit.co/aventurago.contacto@gmail.com" method="POST">
                         <!-- PRIMERA FILA - 2 COLUMNAS -->
                         <div class="fila-campos">
                             <div class="campo">
                                 <label for="nombre">Nombre completo</label>
-                                <input type="text" id="nombre" placeholder="Ej: María Pérez" required>
+                                <input type="text" name="nombre" id="nombre" placeholder="Ej: María Pérez" required>
                             </div>
                             <div class="campo">
                                 <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" placeholder="Ej: +57 320 123 4567" required>
+                                <input type="tel" name="telefono" id="telefono" placeholder="Ej: +57 320 123 4567" required>
                             </div>
                         </div>
 
@@ -143,11 +143,11 @@
                         <div class="fila-campos">
                             <div class="campo">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" placeholder="Ej: sucorreo@correo.com" required>
+                                <input type="email" name="email" id="email" placeholder="Ej: sucorreo@correo.com" required>
                             </div>
                             <div class="campo">
                                 <label for="objeto">Objeto de la pregunta</label>
-                                <input type="text" id="objeto" placeholder="Ej: Consulta general" required>
+                                <input type="text" name="objeto" id="objeto" placeholder="Ej: Consulta general" required>
                             </div>
                         </div>
 
@@ -155,28 +155,18 @@
                         <div class="fila-campos">
                             <div class="campo-full">
                                 <label for="mensaje">Mensaje</label>
-                                <textarea id="mensaje" rows="4" placeholder="Ej: El siguiente mensaje es para..."
-                                    required></textarea>
+                                <textarea name="mensaje" id="mensaje" rows="4" placeholder="Ej: El siguiente mensaje es para..." required></textarea>
                             </div>
                         </div>
 
-
-                        <!-- Configuración de FormSubmit para que aparezca mensaje de gracias al enviar el formulario de contacto -->
+                        <!-- Configuración de FormSubmit -->
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next"
-                            value="https://albert-gutierrez.github.io/Aventura-Go/website_externos/contactanos_gracias.html">
+                        <input type="hidden" name="_next" value="https://albert-gutierrez.github.io/Aventura-Go/website_externos/contactanos_gracias.html">
 
-                        <!-- BOTÓN se acrivara cuando sea funcional-->
-                        <!-- <button type="submit" class="btn-enviar">Enviar mensaje</button> -->
-
-                        <!-- boton provisional de reemplazo, direeciona ala pagina de gracias luego de enviar el formulario-->
-                        <button type="submit" class="btn-enviar"
-                            onclick="window.location.href='../website_externos/contactanos_gracias.html'">
-                            Enviar mensaje
-                        </button>
-
-
+                        <!-- BOTÓN CORRECTO -->
+                        <button type="submit" class="btn-enviar">Enviar mensaje</button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -206,8 +196,7 @@
             <div class="footer-top">
                 <div class="row align-items-center">
                     <div class="col-md-12">
-                        <h2 class="palpitando">¿Quieres que tu negocio aparezca aquí?</h2>
-                        <a href="../index.html">Publicate en Aventura Go</a>
+                        <h2 class="palpitando">Sumate a la aventura con Aventura Go</h2>
                     </div>
                 </div>
             </div>
@@ -219,7 +208,7 @@
                     <!-- Columna 1: Logo -->
                     <div class="col-md-2">
                         <div class="logo-section">
-                            <img src="../assets/website_externos/contactanos/img/LOGO-NEGATIVO.png"
+                            <img src="public/assets/website_externos/contactanos/img/LOGO-NEGATIVO.png"
                                 alt="logo Aventura Go">
                         </div>
                     </div>
@@ -306,7 +295,7 @@
         AOS.init();
     </script>
 
-    <script src="../assets/website_externos/contactanos/contactanos.js"></script>
+    <script src="public/assets/website_externos/contactanos/contactanos.js"></script>
 
 
 </body>

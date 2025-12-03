@@ -28,7 +28,7 @@ header("Expires: 0");
     <div class="login-container">
         <div class="login-box">
 
-            <!-- 🧩 Sección del formulario -->
+            <!--  Sección del formulario -->
             <div class="form-section">
                 <img src="public/assets/extras/login/img/REDES-LOGO 2.png" alt="Aventura GO" class="logo mb-3">
 

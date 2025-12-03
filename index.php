@@ -2,29 +2,42 @@
 //index.php - Router principal en larabel se tiene un archivo por cada carpeta de views
 
 require_once __DIR__ . '/config/config.php';
+// -------------------------------------------------------------------------
+// OBTENER Y NORMALIZAR LA URI ACTUAL
+// -------------------------------------------------------------------------
+$requestUri = $_SERVER['REQUEST_URI']; //OBTENER LA URI ACTUAL (por ejemplo: aventura_go/login)
+$request = str_replace('/aventura_go', '', $requestUri); //Quitar el prefijo de la carpeta del proyecto
+$request = strtok($request, '?'); //Quitar parametros tipo ?id=123
+$request = rtrim($request, '/'); //Quitar la barra final (si existe)
+if ($request === '') $request = '/'; //si la ruta queda vacia, se interpreta como "/"
 
-//OBTENER LA URI ACTUAL (por ejemplo: aventura_go/login)
-$requestUri = $_SERVER['REQUEST_URI'];
-
-//Quitar el prefijo de la carpeta del proyecto
-$request = str_replace('/aventura_go', '', $requestUri);
-
-//Quitar parametros tipo ?id=123
-$request = strtok($request, '?');
-
-//Quitar la barra final (si existe)
-$request = rtrim($request, '/');
-
-//si la ruta queda vacia, se interpreta como "/"
-if ($request === '') $request = '/';
-
-//enrutamiento basico
+// ENRUTAMIENTO BÁSICO
 switch ($request) {
+    // ===================================================================================================
+    //                                             RUTAS PÁGINAS PÚBLICAS
+    // ===================================================================================================
     case '/':
-        require BASE_PATH . '/app/views/website/index.html'; //redirige a la pagina de inicio
+        require BASE_PATH . '/app/views/website/index.php';
         break;
 
-    //........................inicio rutas login
+    // Ruta: /destacados
+    case '/destacados':
+        require BASE_PATH . '/app/views/website/toursDestacados.php';
+        break;
+
+    // Ruta: /acerca-de-nosotros
+    case '/acerca-de-nosotros':
+        require BASE_PATH . '/app/views/website/acerca_de_nosotros.php';
+        break;
+
+    // Ruta: /contactanos
+    case '/contactanos':
+        require BASE_PATH . '/app/views/website/contactanos.php';
+        break;
+
+    // ===================================================================================================
+    //                                            RUTAS LOGIN
+    // ===================================================================================================
     case '/login':
         require BASE_PATH . '/app/views/auth/login.php'; //redirige a el login 
         break;
@@ -32,7 +45,7 @@ switch ($request) {
         require BASE_PATH . '/app/views/auth/registrarse.php'; //redirige a panel de registrarse (turista)
         break;
     case '/iniciar-sesion':
-        require BASE_PATH . '/app/controllers/loginController.php'; //redirige al inicio de sesion
+        require BASE_PATH . '/app/controllers/loginController.php';
         break;
 
     case '/recoverpw':
@@ -47,12 +60,15 @@ switch ($request) {
         require BASE_PATH . '/app/controllers/logoutController.php';
         break;
 
+    // ===================================================================================================
+    //                                   RUTAS DASBOARD ADMINISTRADOR
+    // ===================================================================================================
+    case '/administrador/cambiar-password':
+        require BASE_PATH . '/app/controllers/passwordChangeController.php';
+        $controller = new PasswordChangeController();
+        $controller->cambiarClave();
+        break;
 
-    //::::::::::::::::::::::fin rutas login
-
-
-
-    //........................inicio rutas administrador
     case '/administrador/dashboard':
         require BASE_PATH . '/app/views/dashboard/administrador/administrador.php';  //redirige al panel de administrador
         break;
@@ -70,19 +86,19 @@ switch ($request) {
         break;
 
     case '/administrador/editar-proveedor':
-        require BASE_PATH . '/app/views/dashboard/administrador/editar_proveedor.php';  //redirige a editar proveedor
+        require BASE_PATH . '/app/views/dashboard/administrador/editar_proveedor.php';
         break;
 
     case '/administrador/actualizar-proveedor':
-        require BASE_PATH . '/app/controllers/administrador/proveedor.php';  //redirige a actualizar proveedor
+        require BASE_PATH . '/app/controllers/administrador/proveedor.php';
         break;
 
     case '/administrador/eliminar-proveedor':
-        require BASE_PATH . '/app/controllers/administrador/proveedor.php';  //redirige a editar proveedor
+        require BASE_PATH . '/app/controllers/administrador/proveedor.php';
         break;
 
     case '/administrador/perfil':
-        require BASE_PATH . '/app/views/dashboard/administrador/perfil_usuario.php';  //redirige a editar proveedor
+        require BASE_PATH . '/app/views/dashboard/administrador/perfil_usuario.php'; //redirige al perfil de usuario de administrador
         break;
 
     case '/administrador/reporte':
@@ -90,12 +106,7 @@ switch ($request) {
         reportesPdfController();
         break;
 
-    case '/administrador/cambiar-password':
-        require BASE_PATH . '/app/controllers/passwordChangeController.php';
-        $controller = new PasswordChangeController();
-        $controller->cambiarClave();
-        break;
-
+    // CRUD del Proveedor Hotelero
     // Registrar el Proveedor Hotelero
     case '/administrador/registrar-proveedor-hotelero':
         require BASE_PATH . '/app/views/dashboard/administrador/registrar_proveedor_hotelero.php';  //redirige al perfil de usuario de administrador
@@ -106,7 +117,6 @@ switch ($request) {
         require BASE_PATH . '/app/views/dashboard/administrador/consultar_proveedor_hotelero.php';  //redirige al perfil de usuario de administrador
         break;
 
-    // CRUD del Proveedor Hotelero
     case '/administrador/guardar-proveedor-hotelero':
         require BASE_PATH . '/app/controllers/administrador/hotelero.php';  //redirige al guardar proveedor
         break;
@@ -123,7 +133,6 @@ switch ($request) {
         require BASE_PATH . '/app/controllers/administrador/hotelero.php';  //elimina el proveedor
         break;
     //Fin de Registrar y consultar el Proveedor Hotelero
-
 
     // Registrar y consultar el Turista
     case '/administrador/registrar-turista':
@@ -154,36 +163,28 @@ switch ($request) {
 
 
 
-    //:::::::::::::::::::::::::fin rutas administrador
+    // ===================================================================================================
+    //                                     RUTAS PROVEEDOR TURISTICO
+    // ===================================================================================================
 
 
 
-    //........................INICIO RUTAS PROVEEDOR TURISTICO
-    case '/proveedor/dashboard':
-        require BASE_PATH . '/app/views/dashboard/administrador/proveedor.php';  //redirige al panel de proveedor
-        break;
-
-    //........................FIN RUTAS PROVEEDOR TURISTICO
+    // ===================================================================================================
+    //                                      RUTAS PROVEEDOR HOTELERO
+    // ===================================================================================================
 
 
 
-    //........................INICIO RUTAS PROVEEDOR HOTELERO
 
 
-    //........................FIN RUTAS PROVEEDOR HOTELERO
-
-
-    //........................INICIO RUTAS TURISTA (USUARIO)
-    case '/turista/dashboard':
-        require BASE_PATH . '/app/views/dashboard/administrador/proveedor.php';  //redirige al panel de proveedor
-        break;
-
-    //........................FIN RUTAS TURISTA (USUARIO)
+    // ===================================================================================================
+    //                                      RUTAS TURISTA (USUARIO)
+    // ===================================================================================================
 
 
 
 
     default:
-        require BASE_PATH . '/app/views/auth/error404.html';
+        require BASE_PATH . '/app/views/auth/error404.php';
         break;
 }

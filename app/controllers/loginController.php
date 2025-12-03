@@ -4,7 +4,7 @@ require_once __DIR__ . '/../helpers/alert_helper.php';
 require_once __DIR__ . '/../models/login.php';
 
 
-// $clave = '789';
+// $clave = '9876543';
 // echo password_hash($clave, PASSWORD_DEFAULT);
 
 //ejeciutar segun la solicitud al servisor "POST"
